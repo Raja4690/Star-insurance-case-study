@@ -1,5 +1,5 @@
 CREATE TABLE BranchDetails(
-                [BranchID] [INT] NOT NULL,
+                [BranchID] [BIGINT] NOT NULL,
     [BranchName] [varchar](30) ,
     [Location] [varchar](50) Not Null,
     [No_of_Customer] [BIGINT] Not Null
