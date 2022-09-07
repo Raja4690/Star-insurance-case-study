@@ -1,8 +1,8 @@
 create table BranchDetails(
-                [branchID] [int] NOT NULL,
+                [BranchID] [int] NOT NULL,
     [BranchName] [varchar](30) ,
     [Location] [varchar](50) Not Null,
-    [Nocustomer] [Real],
+    [No_Of_customer] [Real],
 	 CONSTRAINT [PK_branchID] PRIMARY KEY CLUSTERED
 (
     [branchID] ASC
@@ -12,17 +12,17 @@ create table BranchDetails(
 select * from BranchDetails
 
 
-INSERT  [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer])VALUES (101, 'canda', 'Ottawa', 59000 )
-INSERT  [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (102, 'Usa',   'Boston',  83283 )
-INSERT  [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (103, 'Russia', 'Moscow', 728276)
-INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (104, 'China', 'Sanghai',   7263738)
-INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (105, 'Ukraine', 'Kyiv', 2983298 )
-INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (106, 'Algeria', 'Setif', 727637)
-INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (107, 'Armenia', 'Kamo',838937)
-INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (108, 'Bangladesh','Dhaka', 737838)
-INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (109,  'Belgium', 'Charleroi',7538)
-INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (110,  'Estonia','Narva', 325526)
-INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (111,  'Romenia', 'Timisoara',526635)
+INSERT  [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer])VALUES (101, 'canda', 'Ottawa', 59000 )
+INSERT  [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (102, 'Usa',   'Boston',  83283 )
+INSERT  [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (103, 'Russia', 'Moscow', 728276)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (104, 'China', 'Sanghai',   7263738)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (105, 'Ukraine', 'Kyiv', 2983298 )
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (106, 'Algeria', 'Setif', 727637)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (107, 'Armenia', 'Kamo',838937)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (108, 'Bangladesh','Dhaka', 737838)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (109,  'Belgium', 'Charleroi',7538)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (110,  'Estonia','Narva', 325526)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (111,  'Romenia', 'Timisoara',526635)
 
 
 
@@ -32,96 +32,26 @@ INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VAL
 Select getdate(), convert(varchar, getdate(), 113
 
 
-Create View V_BranchDetails as Select BranchID,BranchName,Location,Nocustomer,from BranchDetails
+
+
+select * from BranchDetails
 
 
 
 
 
-Insert into V_BranchDetails values(123,'Rome','Vialiaramz 184','32')
+Alter table  Branchdetails Add  Branch_phone_no Int;
+
+/*alter table branchdetails
+drop column branch_phone_no*/
 
 
 
-Delete from V_BranchDetails where BranchId= '123'
+sp_rename 'BranchDetails.No_Of_customer' , 'NoOfcustomer', 'COLUMN';
+sp_rename 'BranchDetails.NoOfcustomer' , 'No_Of_customer', 'COLUMN';
 
-
-Select * from v_BranchDetails
-
-Delete from V_BranchDetails where Branchname = 'Rome'
-
-Alter View V_BranchDetails 
-as 
-Select BranchID,BranchName,Location,Nocustomer from V_BranchDetails 
-Insert into V_BranchDetails values('123','Rome','Vialiaramz 184','32')
-
-
-Drop View V_BranchDetails
-
-
-
-Create Procedure Proc_BranchDetails_Insert
-
-
-    @VBranchID [int],
-    @VBranchName [varchar](30),
-    @VLocation[varchar](50),
-    @VNocustomer [int],
-   
-	AS
-  Begin Transaction
-  Insert into BranchDetails( BranchId,BranchName,Location,Nocustomer) values(@VBranchID,@VbName, @VLocat,@VNcustomer)
-Commit Transaction
- 
-Exec Proc_BranchDetails_Insert'123','Rome','Valiaramz184','32'
- 
-Select * from BranchDetails
-
-
-
-Alter Procedure Proc_BranchDetails_Insert
-
- @VBranchID [int],
-    @VBranchName [varchar](30),
-    @VLocation[varchar](50),
-    @VNocustomer [int],
- 
-As
-
-Begin
-
-  Begin Transaction
-
-    if ((len(@vLocation) > 0) And (len(@VBranchName) > 0))
-
-    Begin
-
-      Insert into BranchDetails(BranchId,BranchName,Location,Nocustomer) values(@VBranchID,@VBranchName, @VLocation,@VNocustomer)
-
-    End
-
-    Else
-
-    Begin
-
-      Print 'Cannot insert blank Branch Name and / Locate'
-
-    End
-
-  Commit Transaction
-
-End
-
-Exec Proc_BranchDetails_Insert '122','Bravia','bulzd road 184','43'
- 
 
 select *from BranchDetails
-
-
-
-
-
-____________________________________________________________________________________________________________________________________________________
-____________________________________________________________________________________________________________________________________________________
 
 
 create table [PlanTransition](
@@ -192,63 +122,6 @@ Select BranchID,CustomerName,Oldcategory,Newcategory, newplan from plantransitio
 Insert into V_plantransition values(125,'james.r','Life cover','critical illness','21999')
 
 
-Drop View V_plantransition
+/*Drop View V_plantransition*/
 
 
-
-Create Procedure Proc_plantransition_Insert
-
-
-    @VBranchID [int]  ,
-    @VCustomerName [varchar](30) ,
-    @VOldcategory [varchar](50) ,
-    @VNewcategory [varchar] (50) ,
-    @Vnewplan [varchar](20) 
-AS
-  Begin Transaction
-  Insert into plantransition( BranchID,CustomerName,Oldcategory,Newcategory, newplan) values(@VBranchID,@VCustomerName, @VOldcategory,@VNewcategory,@Vnewplan)
-Commit Transaction
- 
-Exec Proc_plantransition_Insert '125','james.r','Life cover','critical illness','21999'
- 
-Select * from plantransition
-
-
-
-Alter Procedure Proc_plantransition_Insert
-
- @VBranchID [int]  ,
-    @VCustomerName [varchar](30) ,
-    @VOldcategory [varchar](50) ,
-    @VNewcategory [varchar] (50) ,
-    @Vnewplan [varchar](20) 
-AS
-
-Begin
-
-  Begin Transaction
-
-    if ((len(@vOldCategory) > 0) And (len(@VCustomerName) > 0))
-
-    Begin
-
-      Insert into plantransition(BranchID,CustomerName,Oldcategory,Newcategory, newplan) values(@VBranchID,@VCustomerName, @VOldcategory,@VNewcategory,@Vnewplan)
-
-    End
-
-    Else
-
-    Begin
-
-      Print 'Cannot insert blank Branch Name and / Locate'
-
-    End
-
-  Commit Transaction
-
-End
-
-Exec Proc_plantransition_Insert '122','Bravia','bulzd road 184','43','gilver'
- 
-
-select *from plantransition
