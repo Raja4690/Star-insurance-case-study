@@ -34,7 +34,7 @@ Select getdate(), convert(varchar, getdate(), 113
 
 
 
-select * from BranchDetails
+Select * from BranchDetails
 
 
 
@@ -42,16 +42,75 @@ select * from BranchDetails
 
 Alter table  Branchdetails Add  Branch_phone_no Int;
 
-/*alter table branchdetails
-drop column branch_phone_no*/
+alter table branchdetails 
+drop column branch_phone_no
 
 
 
-sp_rename 'BranchDetails.No_Of_customer' , 'NoOfcustomer', 'COLUMN';
-sp_rename 'BranchDetails.NoOfcustomer' , 'No_Of_customer', 'COLUMN';
 
+Create Procedure Proc_BranchDetails_Insert
+
+
+    @VBranchID [int],
+    @VBranchName [varchar](30),
+    @VLocation[varchar](50),
+    @VNo_ Of_customer [real]
+   
+	AS
+  Begin Transaction
+  Insert into BranchDetails( [BranchId],[BranchName],[Location],[Nocustomer]) values(@VBranchID,@VBranchName, @VLocation,@VNocustomer)
+Commit Transaction
+ 
+Exec Proc_BranchDetails_Insert'123','Rome','Valiaramz184','32'
+ 
+Select * from BranchDetails
+
+
+
+Alter Procedure Proc_BranchDetails_Insert
+
+ @VBranchID [int],
+    @VBranchName [varchar](30),
+    @VLocation[varchar](50),
+    @VNocustomer [int],
+ 
+As
+
+Begin
+
+  Begin Transaction
+
+    if ((len(@vLocation) > 0) And (len(@VBranchName) > 0))
+
+    Begin
+
+      Insert into BranchDetails(BranchId,BranchName,Location,Nocustomer) values(@VBranchID,@VBranchName, @VLocation,@VNocustomer)
+
+    End
+
+    Else
+
+    Begin
+
+      Print 'Cannot insert blank Branch Name and / Locate'
+
+    End
+
+  Commit Transaction
+
+End
+
+Exec Proc_BranchDetails_Insert '122','Bravia','bulzd road 184','43'
+ 
 
 select *from BranchDetails
+
+
+
+
+
+____________________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________________________
 
 
 create table [PlanTransition](
@@ -122,6 +181,63 @@ Select BranchID,CustomerName,Oldcategory,Newcategory, newplan from plantransitio
 Insert into V_plantransition values(125,'james.r','Life cover','critical illness','21999')
 
 
-/*Drop View V_plantransition*/
+Drop View V_plantransition
 
 
+
+Create Procedure Proc_plantransition_Insert
+
+
+    @VBranchID [int]  ,
+    @VCustomerName [varchar](30) ,
+    @VOldcategory [varchar](50) ,
+    @VNewcategory [varchar] (50) ,
+    @Vnewplan [varchar](20) 
+AS
+  Begin Transaction
+  Insert into plantransition( BranchID,CustomerName,Oldcategory,Newcategory, newplan) values(@VBranchID,@VCustomerName, @VOldcategory,@VNewcategory,@Vnewplan)
+Commit Transaction
+ 
+Exec Proc_plantransition_Insert '125','james.r','Life cover','critical illness','21999'
+ 
+Select * from plantransition
+
+
+
+Alter Procedure Proc_plantransition_Insert
+
+ @VBranchID [int]  ,
+    @VCustomerName [varchar](30) ,
+    @VOldcategory [varchar](50) ,
+    @VNewcategory [varchar] (50) ,
+    @Vnewplan [varchar](20) 
+AS
+
+Begin
+
+  Begin Transaction
+
+    if ((len(@vOldCategory) > 0) And (len(@VCustomerName) > 0))
+
+    Begin
+
+      Insert into plantransition(BranchID,CustomerName,Oldcategory,Newcategory, newplan) values(@VBranchID,@VCustomerName, @VOldcategory,@VNewcategory,@Vnewplan)
+
+    End
+
+    Else
+
+    Begin
+
+      Print 'Cannot insert blank Branch Name and / Locate'
+
+    End
+
+  Commit Transaction
+
+End
+
+Exec Proc_plantransition_Insert '122','Bravia','bulzd road 184','43','gilver'
+ 
+
+select *from plantransition
