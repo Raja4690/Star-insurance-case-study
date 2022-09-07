@@ -1,0 +1,128 @@
+CREATE TABLE BranchDetails(
+                [BranchID] [INT] NOT NULL,
+    [BranchName] [varchar](30) ,
+    [Location] [varchar](50) Not Null,
+    [No_of_Customer] [BIGINT] Not Null
+	 CONSTRAINT [PK_branchID] PRIMARY KEY CLUSTERED
+(
+    [BranchID] ASC
+)
+) ON [PRIMARY]
+
+SELECT * FROM BranchDetails
+
+
+INSERT  [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer])VALUES (101, 'canda', 'Ottawa', 59000 )
+INSERT  [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (102, 'Usa',   'Boston',  83283 )
+INSERT  [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (103, 'Russia', 'Moscow', 728276)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (104, 'China', 'Sanghai',   7263738)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (105, 'Ukraine', 'Kyiv', 2983298 )
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (106, 'Algeria', 'Setif', 727637)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (107, 'Armenia', 'Kamo',838937)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (108, 'Bangladesh','Dhaka', 737838)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (109,  'Belgium', 'Charleroi',7538)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (110,  'Estonia','Narva', 325526)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (111,  'Romenia', 'Timisoara',526635)
+
+
+
+
+ /*T_ sql*/
+
+/*SELECT getdate(), convert(VARCHAR, getdate(), 113*/
+
+
+
+
+SELECT* from BranchDetails
+
+
+
+
+
+Alter table  Branchdetails Add  Branch_phone_no Int;
+
+/*alter table branchdetails
+drop column branch_phone_no*/
+
+
+
+sp_rename 'BranchDetails.No_Of_customer' , 'NoOfcustomer', 'COLUMN';
+sp_rename 'BranchDetails.NoOfcustomer' , 'No_Of_customer', 'COLUMN';
+
+SELECT *FROM BranchDetails
+
+
+CREATE TABLE [PlanTransition](
+    [Transition_Id] INT NOT NULL PRIMARY KEY,
+    [branchID] [int] not null ,
+    [CustomerName] [varchar](30) ,
+    [Oldcategory] [varchar](50) ,
+    [Newcategory] [varchar] (50) ,
+    [newplan] [varchar](20),
+    CONSTRAINT FK_TransactionOrder FOREIGN KEY (BranchID)
+    REFERENCES Branchdetails(BranchID)
+
+);
+SELECT * FROM BranchDetails
+
+SELECT Transition_Id
+FROM PlanTransition
+WHERE  branchid = 103;
+
+
+INSERT  [PlanTransition] ([Transition_Id],[branchID], [CustomerName],  [Oldcategory], [Newcategory], [newplan] )VALUES (26537,101, 'Charles', 'premium',  'critical illness', '21999')
+INSERT  [PlanTransition] ( [Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (5355,104, 'Chioke',   'Life cover',   'gold' ,'39999')
+INSERT  [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (56743,103, 'Perk', 'Accidental cover', 'life cover till 99 ', '23999')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (73682,104, 'Sterry', 'Life cover', '  silver', '27999')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (63562,107, 'Senurita', 'Critical illness',  ' Life cover','60000')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (83674,106, 'Nike', 'premium',  'Accident cover', '19000')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (73553,107, 'Giyan', 'Critical illness', ' 1 crore  life cover','23999')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]) VALUES (83660,105, 'Jim','Gold', 'premium','21999')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (763650,101,  'Elina', 'Premium', 'gold','39999')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (97673,110,  'Taylor','Life cover till 99', 'Accidental cover',' 19000')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (13553,109,  'Sujan', 'Silver', 'critical illness', '21999')
+INSERT  [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  )VALUES (97638,103, 'Liam', 'Accidental cover', 'premium','21999')
+INSERT  [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (65573,102, 'Oliver',   '1 crore lifecover',   'gold','39999')
+INSERT  [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (86537,105, 'Saga', 'gold', ' silver', '27999')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (55437,104, 'Daniel', 'Life cover', '  silver','27999')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (02883,103, 'Nathan', 'Accidental cover',  ' Life cover','23999')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (06353,107, 'Douglas', 'critical illness',  'Accident cover', '19000')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (43637,102, 'Henry', ' 1 crore  life cover', 'silver', '27999')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (09038,108, 'Joseph', 'premium' ,'critical illness','21999')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (08363,106,  'Charlee', 'premium', 'gold','39999')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (05242,110,  'Lio', 'life cover till 99', 'silver','27999')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (06827,102,  'Walter', '1 crore life cover ', 'critical illness', '21999')
+
+
+Select * FROM plantransition
+
+sp_rename 'plantransition.newplan' , 'New_Price', 'COLUMN';
+
+
+
+CREATE VIEW V_Plantransition
+AS SELECT BranchID,CustomerName,Oldcategory,Newcategory, newplan FROM Plantransition
+
+
+
+SELECT * FROM V_plantransition
+
+INSERT  V_plantransition VALUES(124,'Luther','silver ','Accidental cover','27999')
+INSERT  V_plantransition VALUES(125,'james.r','Life cover','critical illness','21999')
+INSERT  V_plantransition VALUES(126,'Messi','Premium','Life cover','23999')
+
+
+
+
+DELETE FROM V_plantransition WHERE CustomerName= 'james.r'
+
+
+Select * FROM v_plantransition
+
+
+ALTER VIEW
+V_plantransition
+AS 
+SELECT BranchID,CustomerName,Oldcategory,Newcategory, newplan FROM plantransition 
+INSERT V_plantransition VALUES(125,'james.r','Life cover','critical illness','21999')
