@@ -1,0 +1,254 @@
+create table BranchDetails(
+                [branchID] [int] NOT NULL,
+    [BranchName] [varchar](30) ,
+    [Location] [varchar](50) Not Null,
+    [Nocustomer] [Real],
+	 CONSTRAINT [PK_branchID] PRIMARY KEY CLUSTERED
+(
+    [branchID] ASC
+)
+) ON [PRIMARY]
+
+select * from BranchDetails
+
+
+INSERT  [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer])VALUES (101, 'canda', 'Ottawa', 59000 )
+INSERT  [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (102, 'Usa',   'Boston',  83283 )
+INSERT  [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (103, 'Russia', 'Moscow', 728276)
+INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (104, 'China', 'Sanghai',   7263738)
+INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (105, 'Ukraine', 'Kyiv', 2983298 )
+INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (106, 'Algeria', 'Setif', 727637)
+INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (107, 'Armenia', 'Kamo',838937)
+INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (108, 'Bangladesh','Dhaka', 737838)
+INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (109,  'Belgium', 'Charleroi',7538)
+INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (110,  'Estonia','Narva', 325526)
+INSERT [BranchDetails] ([branchID],  [BranchName], [Location], [Nocustomer]) VALUES (111,  'Romenia', 'Timisoara',526635)
+
+
+
+
+ /*T_ sql*/
+
+Select getdate(), convert(varchar, getdate(), 113
+
+
+Create View V_BranchDetails as Select BranchID,BranchName,Location,Nocustomer,from BranchDetails
+
+
+
+
+
+Insert into V_BranchDetails values(123,'Rome','Vialiaramz 184','32')
+
+
+
+Delete from V_BranchDetails where BranchId= '123'
+
+
+Select * from v_BranchDetails
+
+Delete from V_BranchDetails where Branchname = 'Rome'
+
+Alter View V_BranchDetails 
+as 
+Select BranchID,BranchName,Location,Nocustomer from V_BranchDetails 
+Insert into V_BranchDetails values('123','Rome','Vialiaramz 184','32')
+
+
+Drop View V_BranchDetails
+
+
+
+Create Procedure Proc_BranchDetails_Insert
+
+
+    @VBranchID [int],
+    @VBranchName [varchar](30),
+    @VLocation[varchar](50),
+    @VNocustomer [int],
+   
+	AS
+  Begin Transaction
+  Insert into BranchDetails( BranchId,BranchName,Location,Nocustomer) values(@VBranchID,@VbName, @VLocat,@VNcustomer)
+Commit Transaction
+ 
+Exec Proc_BranchDetails_Insert'123','Rome','Valiaramz184','32'
+ 
+Select * from BranchDetails
+
+
+
+Alter Procedure Proc_BranchDetails_Insert
+
+ @VBranchID [int],
+    @VBranchName [varchar](30),
+    @VLocation[varchar](50),
+    @VNocustomer [int],
+ 
+As
+
+Begin
+
+  Begin Transaction
+
+    if ((len(@vLocation) > 0) And (len(@VBranchName) > 0))
+
+    Begin
+
+      Insert into BranchDetails(BranchId,BranchName,Location,Nocustomer) values(@VBranchID,@VBranchName, @VLocation,@VNocustomer)
+
+    End
+
+    Else
+
+    Begin
+
+      Print 'Cannot insert blank Branch Name and / Locate'
+
+    End
+
+  Commit Transaction
+
+End
+
+Exec Proc_BranchDetails_Insert '122','Bravia','bulzd road 184','43'
+ 
+
+select *from BranchDetails
+
+
+
+
+
+____________________________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________________________
+
+
+create table [PlanTransition](
+                [branchID] [int] not null ,
+    [CustomerName] [varchar](30) ,
+    [Oldcategory] [varchar](50) ,
+    [Newcategory] [varchar] (50) ,
+    [newplan] [varchar](20) ,
+
+)ON  [PRIMARY]
+
+
+
+INSERT  [PlanTransition] ([branchID], [CustomerName],  [Oldcategory], [Newcategory], [newplan] )VALUES (101, 'Charles', 'premium',  'critical illness', '21999')
+INSERT  [PlanTransition] ( [branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (104, 'Chioke',   'Life cover',   'gold' ,'39999')
+INSERT  [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (103, 'Perk', 'Accidental cover', 'life cover till 99 ', '23999')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (104, 'Sterry', 'Life cover', '  silver', '27999')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (107, 'Senurita', 'Critical illness',  ' Life cover','60000')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (106, 'Nike', 'premium',  'Accident cover', '19000')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (107, 'Giyan', 'Critical illness', ' 1 crore  life cover','23999')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]) VALUES (105, 'Jim','Gold', 'premium','21999')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (101,  'Elina', 'Premium', 'gold','39999')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (110,  'Taylor','Life cover till 99', 'Accidental cover',' 19000')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (109,  'Sujan', 'Silver', 'critical illness', '21999')
+INSERT  [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  )VALUES (103, 'Liam', 'Accidental cover', 'premium','21999')
+INSERT  [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (102, 'Oliver',   '1 crore lifecover',   'gold','39999')
+INSERT  [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (105, 'Saga', 'gold', ' silver', '27999')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (104, 'Daniel', 'Life cover', '  silver','27999')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (103, 'Nathan', 'Accidental cover',  ' Life cover','23999')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (107, 'Douglas', 'critical illness',  'Accident cover', '19000')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (102, 'Henry', ' 1 crore  life cover', 'silver', '27999')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (108, 'Joseph', 'premium' ,'critical illness','21999')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (106,  'Charlee', 'premium', 'gold','39999')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (110,  'Lio', 'life cover till 99', 'silver','27999')
+INSERT [PlanTransition] ([branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (102,  'Walter', '1 crore life cover ', 'critical illness', '21999')
+
+
+
+
+/*T_ sql*/
+
+Select getdate(), convert(varchar, getdate(), 113
+
+
+Create View V_plantransition as Select BranchID,CustomerName,Oldcategory,Newcategory, newplan from plantransition
+
+
+
+Select * from V_plantransition
+
+Insert into V_plantransition values(124,'Luther','silver ','Accidental cover','27999')
+Insert into V_plantransition values(125,'james.r','Life cover','critical illness','21999')
+Insert into V_plantransition values(126,'Messi','Premium','Life cover','23999')
+
+
+
+
+Delete from V_plantransition where CustomerName= 'james.r'
+
+
+Select * from v_plantransition
+
+Delete from V_plantransition where bname = 'Rome'
+
+Alter View V_plantransition
+as 
+Select BranchID,CustomerName,Oldcategory,Newcategory, newplan from plantransition 
+Insert into V_plantransition values(125,'james.r','Life cover','critical illness','21999')
+
+
+Drop View V_plantransition
+
+
+
+Create Procedure Proc_plantransition_Insert
+
+
+    @VBranchID [int]  ,
+    @VCustomerName [varchar](30) ,
+    @VOldcategory [varchar](50) ,
+    @VNewcategory [varchar] (50) ,
+    @Vnewplan [varchar](20) 
+AS
+  Begin Transaction
+  Insert into plantransition( BranchID,CustomerName,Oldcategory,Newcategory, newplan) values(@VBranchID,@VCustomerName, @VOldcategory,@VNewcategory,@Vnewplan)
+Commit Transaction
+ 
+Exec Proc_plantransition_Insert '125','james.r','Life cover','critical illness','21999'
+ 
+Select * from plantransition
+
+
+
+Alter Procedure Proc_plantransition_Insert
+
+ @VBranchID [int]  ,
+    @VCustomerName [varchar](30) ,
+    @VOldcategory [varchar](50) ,
+    @VNewcategory [varchar] (50) ,
+    @Vnewplan [varchar](20) 
+AS
+
+Begin
+
+  Begin Transaction
+
+    if ((len(@vOldCategory) > 0) And (len(@VCustomerName) > 0))
+
+    Begin
+
+      Insert into plantransition(BranchID,CustomerName,Oldcategory,Newcategory, newplan) values(@VBranchID,@VCustomerName, @VOldcategory,@VNewcategory,@Vnewplan)
+
+    End
+
+    Else
+
+    Begin
+
+      Print 'Cannot insert blank Branch Name and / Locate'
+
+    End
+
+  Commit Transaction
+
+End
+
+Exec Proc_plantransition_Insert '122','Bravia','bulzd road 184','43','gilver'
+ 
+
+select *from plantransition
