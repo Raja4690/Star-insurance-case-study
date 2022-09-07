@@ -1,5 +1,5 @@
 CREATE TABLE BranchDetails(
-                [BranchID] [BIGINT] NOT NULL,
+                [BranchID] [INT] NOT NULL,
     [BranchName] [varchar](30) ,
     [Location] [varchar](50) Not Null,
     [No_of_Customer] [BIGINT] Not Null
@@ -29,18 +29,15 @@ INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer])
 
  /*T_ sql*/
 
-/*SELECT getdate(), convert(VARCHAR, getdate(), 113*/
 
 
-
-
-SELECT* from BranchDetails
+SELECT* FROM BranchDetails
 
 
 
 
 
-Alter table  Branchdetails Add  Branch_phone_no Int;
+ALTER TABLE  Branchdetails ADD  Branch_phone_no BIGINT;
 
 /*alter table branchdetails
 drop column branch_phone_no*/
@@ -54,12 +51,12 @@ SELECT *FROM BranchDetails
 
 
 CREATE TABLE [PlanTransition](
-    [Transition_Id] INT NOT NULL PRIMARY KEY,
-    [branchID] [int] not null ,
-    [CustomerName] [varchar](30) ,
-    [Oldcategory] [varchar](50) ,
-    [Newcategory] [varchar] (50) ,
-    [newplan] [varchar](20),
+    [Transition_Id] BIGINT NOT NULL PRIMARY KEY,
+    [BranchID] [INT] NOT null ,
+    [CustomerName] [VARCHAR](30) ,
+    [Oldcategory] [VARCHAR](50) ,
+    [Newcategory] [VARCHAR] (50) ,
+    [newplan] [VARCHAR](20),
     CONSTRAINT FK_TransactionOrder FOREIGN KEY (BranchID)
     REFERENCES Branchdetails(BranchID)
 
@@ -95,7 +92,7 @@ INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategor
 INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (06827,102,  'Walter', '1 crore life cover ', 'critical illness', '21999')
 
 
-Select * FROM plantransition
+SELECT * FROM plantransition
 
 sp_rename 'plantransition.newplan' , 'New_Price', 'COLUMN';
 
@@ -126,3 +123,9 @@ V_plantransition
 AS 
 SELECT BranchID,CustomerName,Oldcategory,Newcategory, newplan FROM plantransition 
 INSERT V_plantransition VALUES(125,'james.r','Life cover','critical illness','21999')
+
+
+/*Drop View V_plantransition*/
+
+
+
