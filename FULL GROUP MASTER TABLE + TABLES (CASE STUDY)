@@ -1,0 +1,360 @@
+CREATE TABLE BranchDetails(
+                [BranchID] [INT] NOT NULL,
+    [BranchName] [varchar](30) ,
+    [Location] [varchar](50) Not Null,
+    [No_of_Customer] [BIGINT] Not Null
+	 CONSTRAINT [PK_branchID] PRIMARY KEY CLUSTERED
+(
+    [BranchID] ASC
+)
+) ON [PRIMARY]
+
+SELECT * FROM BranchDetails
+
+
+INSERT  [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer])VALUES (101, 'Canada', 'Ottawa', 59000 )
+INSERT  [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (102, 'Usa',   'Boston',  83283 )
+INSERT  [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (103, 'Russia', 'Moscow', 728276)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (104, 'China', 'Sanghai',   7263738)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (105, 'Ukraine', 'Kyiv', 2983298 )
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (106, 'Algeria', 'Setif', 727637)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (107, 'Armenia', 'Kamo',838937)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (108, 'Bangladesh','Dhaka', 737838)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (109,  'Belgium', 'Charleroi',7538)
+INSERT [BranchDetails] ([BranchID],  [BranchName], [Location], [No_Of_customer]) VALUES (110,  'Estonia','Narva', 325526)
+
+
+ /*T_ sql*/
+
+SELECT* FROM BranchDetails
+
+--ALTER TABLE  Branchdetails ADD  Branch_phone_no BIGINT;
+
+/*alter table branchdetails
+drop column branch_phone_no*/
+
+--sp_rename 'BranchDetails.NoOfcustomer' , 'No_Of_customer', 'COLUMN';
+
+SELECT *FROM BranchDetails
+
+
+CREATE TABLE [PlanTransition](
+    [Transition_Id] BIGINT NOT NULL PRIMARY KEY,
+    [BranchID] [INT] NOT null ,
+    [CustomerName] [VARCHAR](30) ,
+    [Oldcategory] [VARCHAR](50) ,
+    [Newcategory] [VARCHAR] (50) ,
+    [newplan] [VARCHAR](20),
+    CONSTRAINT FK_TransactionOrder FOREIGN KEY (BranchID)
+    REFERENCES Branchdetails(BranchID)
+
+);
+SELECT * FROM BranchDetails
+
+SELECT Transition_Id
+FROM PlanTransition
+WHERE  branchid = 103;
+
+
+INSERT  [PlanTransition] ([Transition_Id],[branchID], [CustomerName],  [Oldcategory], [Newcategory], [newplan] )VALUES (26537,101, 'Charles', 'premium',  'critical illness', '6400')
+INSERT  [PlanTransition] ( [Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (5355,104, 'Chioke',   'Life cover',   'gold' ,'9800')
+INSERT  [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (56743,103, 'Perk', 'Accidental cover', 'life cover till 99 ', '6200')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (73682,104, 'Sterry', 'Life cover', '  silver', '8200')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (63562,107, 'Senurita', 'Critical illness',  ' Life cover','8400')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (83674,106, 'Nike', 'premium',  'Accidental cover', '7600')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (73553,107, 'Giyan', 'Critical illness', ' 1 crore  life cover','9200')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]) VALUES (83660,105, 'Jim','Gold', 'premium','6850')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (763650,101,  'Elina', 'Premium', 'gold','9800')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (97673,110,  'Taylor','Life cover till 99', 'Accidental cover',' 7600')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (13553,109,  'Sujan', 'Silver', 'critical illness', '6400')
+INSERT  [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  )VALUES (97638,103, 'Liam', 'Accidental cover', 'premium','6850')
+INSERT  [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (65573,102, 'Oliver',   '1 crore lifecover',   'gold','9800')
+INSERT  [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (86537,105, 'Saga', 'gold', ' silver', '8200')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (55437,104, 'Daniel', 'Life cover', '  silver','8200')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (02883,103, 'Nathan', 'Accidental cover',  ' Life cover','8400')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (06353,107, 'Douglas', 'critical illness',  'Accident cover', '7600')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (43637,102, 'Henry', ' 1 crore  life cover', 'silver', '8200')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan] ) VALUES (09038,108, 'Joseph', 'premium' ,'critical illness','6400')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (08363,106,  'Charlee', 'premium', 'gold','9800')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (05242,110,  'Lio', 'life cover till 99', 'silver','8200')
+INSERT [PlanTransition] ([Transition_Id],[branchID],[CustomerName],  [Oldcategory], [Newcategory], [newplan]  ) VALUES (06827,102,  'Walter', '1 crore life cover ', 'critical illness', '6400')
+
+
+SELECT * FROM Plantransition
+
+sp_rename 'Plantransition.newplan' , 'New_Price', 'COLUMN';
+
+
+
+CREATE VIEW 
+V_Plantransition
+AS 
+SELECT BranchID,CustomerName,Oldcategory,Newcategory, newplan FROM Plantransition
+
+
+
+/*SELECT * FROM V_plantransition
+
+INSERT  V_plantransition VALUES(124,'Luther','silver ','Accidental cover','7600')
+INSERT  V_plantransition VALUES(125,'james.r','Life cover','critical illness','6400')
+INSERT  V_plantransition VALUES(126,'Messi','Premium','Life cover','8400')
+
+
+
+
+DELETE FROM V_plantransition WHERE CustomerName= 'james.r'
+
+
+Select * FROM v_plantransition
+
+
+ALTER VIEW
+V_plantransition
+AS 
+SELECT BranchID,CustomerName,Oldcategory,Newcategory, newplan FROM plantransition 
+INSERT V_plantransition VALUES(125,'james.r','Life cover','critical illness','6400')*/
+
+
+/*Drop View V_plantransition*/
+
+
+CREATE TABLE Insuranceplans
+(
+Plan_id INT PRIMARY KEY,
+Plan_name VARCHAR(20),
+Plan_amount INT,
+Renew_plan INT,
+Increment INT
+)
+
+ INSERT INTO Insuranceplans VALUES (1280,'Premium',6850,6165,1713)
+INSERT INTO Insuranceplans VALUES (1281,'Gold',9800,8820,2450)
+INSERT INTO Insuranceplans VALUES (1282,'Lifecover',8400,7560,2100)
+INSERT INTO Insuranceplans VALUES (1283,'Silver',8200,7380,2050)
+INSERT INTO Insuranceplans VALUES (1284,'Accidental cover',7600,6840,1900)
+INSERT INTO Insuranceplans VALUES (1285,'Critical illness',6400,5760,1600)
+INSERT INTO Insuranceplans VALUES (1286,'1 Crore life cycle',9200,8280,2300)
+INSERT INTO Insuranceplans VALUES (1287,'Life cover till 99',6200,5580,1550)
+
+
+select * from Insuranceplans
+
+
+CREATE TABLE Customerdetails
+(
+CustomerId    BIGINT PRIMARY KEY,
+Customername VARCHAR (40),
+BranchId INT,
+Plan_Id int,
+Phoneno BIGINT,
+CONSTRAINT FK_plans FOREIGN KEY (Plan_id) 
+REFERENCES Insuranceplans(plan_id),
+CONSTRAINT FK_INSURANCE FOREIGN KEY (BranchId)
+REFERENCES BranchDetails(BranchId)
+)
+
+
+INSERT INTO Customerdetails VALUES (1865723487,'Charles',101,1280,7687647586)
+INSERT INTO Customerdetails VALUES (1865723488,'Robert',105,1281,7843765587)
+INSERT INTO Customerdetails VALUES (1865723489,'Chioke',104,1282,9687667980)
+INSERT INTO Customerdetails VALUES (1865723490,'Sujan',109,1283,7675874576)
+INSERT INTO Customerdetails VALUES (1865723491,'Nobita',108,1280,9748765998)
+INSERT INTO Customerdetails VALUES (1865723492,'Sujika',103,1284,8756476889)
+INSERT INTO Customerdetails VALUES (1865723493,'Giyan',107,1285,7583498775)
+INSERT INTO Customerdetails VALUES (1865723494,'Barberry',102,1286,9787364764)
+INSERT INTO Customerdetails VALUES (1865723495,'Taylor',110,1287,8653677565)
+INSERT INTO Customerdetails VALUES (1865723496,'John',106,1280,6576576569)
+
+
+INSERT INTO Customerdetails VALUES (1865723497,'Elina',101,1280,7645768740)
+INSERT INTO Customerdetails VALUES (1865723498,'Jim',105,1281,6843765587)
+INSERT INTO Customerdetails VALUES (1865723499,'Sterry',104,1282,9787667900)
+INSERT INTO Customerdetails VALUES (1865723500,'Duke',109,1283,7675856576)
+INSERT INTO Customerdetails VALUES (1865723501,'Sassy',108,1280,9748765387)
+INSERT INTO Customerdetails VALUES (1865723502,'Perk',103,1284,7256476889)
+INSERT INTO Customerdetails VALUES (1865723503,'Senurita',107,1285,8768349875)
+INSERT INTO Customerdetails VALUES (1865723504,'Johnsonm',102,1286,9873687684)
+INSERT INTO Customerdetails VALUES (1865723505,'Tyler',110,1287,8567368856)
+INSERT INTO Customerdetails VALUES (1865723506,'Nike',106,1280,6576666569)
+
+
+INSERT INTO Customerdetails VALUES (1865723507,'Zuke',101,1280,6778764758)
+INSERT INTO Customerdetails VALUES (1865723508,'Saga',105,1281,7840865587)
+INSERT INTO Customerdetails VALUES (1865723509,'Daniel',104,1282,9688867980)
+INSERT INTO Customerdetails VALUES (1865723510,'Jack',109,1283,7675454586)
+INSERT INTO Customerdetails VALUES (1865723511,'Joseph',108,1280,9748765998)
+INSERT INTO Customerdetails VALUES (1865723512,'Liam',103,1284,8756476876)
+INSERT INTO Customerdetails VALUES (1865723513,'Noah',107,1285,7583498775)
+INSERT INTO Customerdetails VALUES (1865723514,'Oliver',102,1286,97873243764)
+INSERT INTO Customerdetails VALUES (1865723515,'Lio',110,1287,8683677560)
+INSERT INTO Customerdetails VALUES (1865723516,'Charlee',106,1280,6576554556)
+
+INSERT INTO Customerdetails VALUES (1865723517,'Aiden',101,1280,9787647586)
+INSERT INTO Customerdetails VALUES (1865723518,'Mattew',105,1281,8743765587)
+INSERT INTO Customerdetails VALUES (1865723519,'Peter',104,1282,9687667998)
+INSERT INTO Customerdetails VALUES (1865723520,'Aaron',109,1283,7675874508)
+INSERT INTO Customerdetails VALUES (1865723521,'Adam',108,1280,9748765987)
+INSERT INTO Customerdetails VALUES (1865723522,'Nathan',103,1284,8756986889)
+INSERT INTO Customerdetails VALUES (1865723523,'Douglas',107,1285,7598498775)
+INSERT INTO Customerdetails VALUES (1865723524,'Henry',102,1286,9787360964)
+INSERT INTO Customerdetails VALUES (1865723525,'Zachary',110,1287,8653665565)
+INSERT INTO Customerdetails VALUES (1865723526,'Dennis',106,1280,6576806569)
+
+INSERT INTO Customerdetails VALUES (1865723527,'Patrik',101,1280,7687647586)
+INSERT INTO Customerdetails VALUES (1865723528,'Zerry',105,1281,7843765587)
+INSERT INTO Customerdetails VALUES (1865723529,'Adam',104,1282,9687667980)
+INSERT INTO Customerdetails VALUES (1865723530,'Nathan',109,1283,7675898576)
+INSERT INTO Customerdetails VALUES (1865723531,'Henerry',108,1280,9749876599)
+INSERT INTO Customerdetails VALUES (1865723532,'Piter',103,1284,8986666689)
+INSERT INTO Customerdetails VALUES (1865723533,'Kylee',107,1285,7555888877)
+INSERT INTO Customerdetails VALUES (1865723534,'Walter',110,1286,9953699999)
+INSERT INTO Customerdetails VALUES (1865723535,'Keith',110,1287,995369999)
+INSERT INTO Customerdetails VALUES (1865723536,'Roger',106,1280,9654453569)
+
+CREATE TABLE Insurance_Scheme(
+    Plan_Id INT PRIMARY KEY,
+    Plan_Name VARCHAR (25),
+    Plan_Amount INT,
+    Receipient INT,
+    Tenure VARCHAR (40),
+    Renew_Plan INT,   
+)
+
+
+INSERT INTO Insurance_Scheme VALUES (1280,'Premium', 6850, 7536,'Yearly' ,6165 )
+INSERT INTO Insurance_Scheme VALUES (1281,'Gold', 9800, 3732,'yearly',8820)
+INSERT INTO Insurance_Scheme VALUES (1282,'Critical illness', 8200, 2674,'Halfyearly',7380)
+INSERT INTO Insurance_Scheme VALUES (1283,'Life cover', 8400, 1764,'yearly',7560)
+INSERT INTO Insurance_Scheme VALUES (1284,'Accidenatal cover', 6400, 8943,'Quaterly',5760)
+INSERT INTO Insurance_Scheme VALUES (1285,'Silver', 7600,4764,'Biannualy',6840)
+INSERT INTO Insurance_Scheme VALUES (1286,'1 crore life cover', 9200, 4639,'yearly',8280)
+INSERT INTO Insurance_Scheme VALUES (1287,'life cover till 99', 6200, 6373, '99 Year',5580)
+
+SELECT *FROM Insurance_Scheme
+
+
+
+CREATE TABLE Category(
+Category_Id INT PRIMARY KEY,
+Plan_Id INT,
+Insurance_Types VARCHAR (25)
+CONSTRAINT FK_TYPES FOREIGN KEY(Plan_Id)
+REFERENCES Insurance_Scheme(Plan_Id)
+)
+SELECT *FROM Category
+
+
+
+
+INSERT INTO Category VALUES (1001,1280,'Full life policy')
+INSERT INTO Category VALUES (1002, 1281,'Senior citizen Policy')
+INSERT INTO Category VALUES (1003,1282,'Health Policy')
+INSERT INTO Category VALUES (1004,1283,'Family Policy')
+INSERT INTO Category VALUES (1005,1284,'Accidental Policy')
+INSERT INTO Category VALUES (1006,1285,'Child Policy')
+INSERT INTO Category VALUES (1007,1286,'Individual Policy')
+INSERT INTO Category VALUES (1008,1287,'Retirement Policy')
+
+
+
+
+CREATE TABLE [MASTER DATA](
+ [BranchID]     INT ,
+ [BranchName]   VARCHAR(30) ,
+ [Location]     VARCHAR(50) ,
+ [No_of_Customer]BIGINT,
+ [Category_Id] INT,
+ [Insurance_Types] VARCHAR (25),
+ [Plan_id]     INT ,
+ [Plan_name]   VARCHAR(20),
+ [Receipient] INT,
+ [Plan_amount] INT,
+ [Renew_plan]  INT,
+ [Tenure] VARCHAR (40),
+)
+
+INSERT [MASTER DATA] VALUES (101,'Canada','Ottawa',59000, 1001,'Full life policy',1280,'Premium',7536,6850,6165,'Yearly')
+INSERT [MASTER DATA] VALUES (102,'USA','Boston',83283,1002,'Senior citizen Policy',1281,'Gold',3732,9800,8820,'yearly')
+INSERT [MASTER DATA] VALUES (103,'Russia', 'Moscow', 728276,1003,'Health Policy',1282,'Critical illness',2674,8200,7380,'Halfyearly')
+INSERT [MASTER DATA] VALUES (104,'China', 'Sanghai',   7263738,1004,'Family Policy',1283,'Life cover',1764,8400,7560,'yearly')
+INSERT [MASTER DATA] VALUES (105,'Ukraine', 'Kyiv', 2983298,1005,'Accidental Policy',1284,'Accidenatal cover',8943,6400,5760,'Quaterly')
+INSERT [MASTER DATA] VALUES (106,'Algeria', 'Setif', 727637,1006,'Child Policy',1285,'Silver',4764,7600,6840,'Biannualy')
+INSERT [MASTER DATA] VALUES (107,'Armenia', 'Kamo',838937,1007,'Individual Policy',1286,'1 crore life cover',4639,9200,8280,'yearly')
+INSERT [MASTER DATA] VALUES (108,'Bangladesh','Dhaka', 737838,1008,'Retirement Policy',1287,'life cover till 99',6373,6200,5580,'99 Year')
+INSERT [MASTER DATA] VALUES (109,'Belgium', 'Charleroi',7538,'NULL','NULL','NULL','NULL','NULL','NULL','NULL','NULL')
+INSERT [MASTER DATA] VALUES (110,'Estonia','Narva', 325526,'NULL','NULL','NULL','NULL','NULL','NULL','NULL','NULL')
+
+
+SELECT *FROM [MASTER DATA]
+
+--DROP TABLE 
+--[MASTER DATA]
+
+
+
+ CREATE TABLE [MASTER DATA2](
+ [CustomerId]  BIGINT,
+ [Customername]VARCHAR (40),
+ [Transition_Id]BIGINT ,
+ [Oldcategory] VARCHAR(50) ,
+ [Newcategory] VARCHAR(50) ,
+ [New_PRICE]     VARCHAR (20),
+ [Increment]   INT,
+ [Phoneno]     BIGINT,
+ )
+
+INSERT [MASTER DATA2] VALUES (1865723487,'Charles',26537, 'premium',  'critical illness', '6400',1600,7687647586
+INSERT [MASTER DATA2] VALUES (1865723488,'Robert','','','','','',7843765587)
+INSERT [MASTER DATA2] VALUES (1865723489,'Chioke',5355,   'Life cover',   'gold' ,'9800',2450,9687667980)
+INSERT [MASTER DATA2] VALUES (1865723490,'Sujan',13553, 'Silver', 'critical illness', '6400',1600,7675874576)
+INSERT [MASTER DATA2] VALUES (1865723491,'Nobita','','','','','',9748765998)
+INSERT [MASTER DATA2] VALUES (1865723492,'Sujika','','','','','',8756476889)
+INSERT [MASTER DATA2] VALUES (1865723493,'Giyan',73553, 'Critical illness', ' 1 crore  life cover','9200',2300,7583498775)
+INSERT [MASTER DATA2] VALUES (1865723494,'Barberry','','','','','',9787364764)
+INSERT [MASTER DATA2] VALUES (1865723495,'Taylor',97673,'Life cover till 99', 'Accidental cover',' 7600',1900,8653677565)
+INSERT [MASTER DATA2] VALUES (1865723496,'John','','','','','',6576576569)
+INSERT [MASTER DATA2] VALUES (1865723497,'Elina',763650, 'Premium', 'gold','9800',2450,7645768740)
+INSERT [MASTER DATA2] VALUES (1865723498,'Jim',83660,'Gold', 'premium','6850',1713,6843765587)
+INSERT [MASTER DATA2] VALUES (1865723499,'Sterry',73682, 'Life cover', '  silver', '8200',2050,9787667900)
+INSERT [MASTER DATA2] VALUES (1865723500,'Duke','','','','','',7675856576)
+INSERT [MASTER DATA2] VALUES (1865723501,'Sassy','','','','','',9748765387)
+INSERT [MASTER DATA2] VALUES (1865723502,'Perk',56743, 'Accidental cover', 'life cover till 99 ', '6200',1550,7256476889)
+INSERT [MASTER DATA2] VALUES (1865723503,'Senurita',63562, 'Critical illness',' Life cover','8400',2100,8768349875)
+INSERT [MASTER DATA2] VALUES (1865723504,'Johnsonm','','','','','',9873687684)
+INSERT [MASTER DATA2] VALUES (1865723505,'Tyler','','','','','',8567368856)
+INSERT [MASTER DATA2] VALUES (1865723506,'Nike',83674, 'premium',  'Accidental cover', '7600',1900,6576666569)
+INSERT [MASTER DATA2] VALUES (1865723507,'Zuke','','','','','',6778764758)
+INSERT [MASTER DATA2] VALUES (1865723508,'Saga',86537, 'gold', ' silver', '8200',2050,7840865587)
+INSERT [MASTER DATA2] VALUES (1865723509,'Daniel',55437, 'Life cover', '  silver','8200',2050,9688867980)
+INSERT [MASTER DATA2] VALUES (1865723510,'Jack','','','','','',7675454586)
+INSERT [MASTER DATA2] VALUES (1865723511,'Joseph',09038, 'premium' ,'critical illness','6400',1600,9748765998)
+INSERT [MASTER DATA2] VALUES (1865723512,'Liam',97638, 'Accidental cover', 'premium','6850',1713,8756476876)
+INSERT [MASTER DATA2] VALUES (1865723513,'Noah','','','','','',7583498775)
+INSERT [MASTER DATA2] VALUES (1865723514,'Oliver',65573,   '1 crore lifecover',   'gold','9800',2450,97873243764)
+INSERT [MASTER DATA2] VALUES (1865723515,'Lio',05242, 'life cover till 99', 'silver','8200',2050,8683677560)
+INSERT [MASTER DATA2] VALUES (1865723516,'Charlee',08363, 'premium', 'gold','9800',2450,6576554556)
+INSERT [MASTER DATA2] VALUES (1865723517,'Aiden','','','','','',9787647586)
+INSERT [MASTER DATA2] VALUES (1865723518,'Mattew','','','','','',8743765587)
+INSERT [MASTER DATA2] VALUES (1865723519,'Peter','','','','','',9687667998)
+INSERT [MASTER DATA2] VALUES (1865723520,'Aaron','','','','','',7675874508)
+INSERT [MASTER DATA2] VALUES (1865723521,'Adam','','','','','',9748765987)
+INSERT [MASTER DATA2] VALUES (1865723522,'Nathan',02883, 'Accidental cover',  ' Life cover','8400,2100',2100,8756986889)
+INSERT [MASTER DATA2] VALUES (1865723523,'Douglas',06353, 'critical illness',  'Accident cover', '7600',1900,7598498775)
+INSERT [MASTER DATA2] VALUES (1865723524,'Henry',43637, ' 1 crore  life cover', 'silver', '8200',2050,9787360964)
+INSERT [MASTER DATA2] VALUES (1865723525,'Zachary','','','','','',8653665565)
+INSERT [MASTER DATA2] VALUES (1865723526,'Dennis','','','','','',6576806569)
+INSERT [MASTER DATA2] VALUES (1865723527,'Patrik','','','','','',7687647586)
+INSERT [MASTER DATA2] VALUES (1865723528,'Zerry','','','','','',7843765587)
+INSERT [MASTER DATA2] VALUES (1865723529,'Adam','','','','','',9687667980)
+INSERT [MASTER DATA2] VALUES (1865723530,'Nathan','','','','','',7675898576)
+INSERT [MASTER DATA2] VALUES (1865723531,'Henerry','','','','','',9749876599)
+INSERT [MASTER DATA2] VALUES (1865723532,'Piter','','','','','',8986666689)
+INSERT [MASTER DATA2] VALUES (1865723533,'Kylee','','','','','',7555888877)
+INSERT [MASTER DATA2] VALUES (1865723534,'Walter',06827, '1 crore life cover ', 'critical illness', '6400',1600,9953699999)
+INSERT [MASTER DATA2] VALUES (1865723535,'Keith','','','','','',995369999)
+INSERT [MASTER DATA2] VALUES (1865723536,'Roger','','','','','',9654453569)
+
+
+ SELECT * FROM BranchDetails,[PlanTransition],Insuranceplans,Customerdetails,Insurance_Scheme,Category
+
+ 
