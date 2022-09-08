@@ -355,6 +355,6 @@ INSERT [MASTER DATA2] VALUES (1865723535,'Keith','','','','','',995369999)
 INSERT [MASTER DATA2] VALUES (1865723536,'Roger','','','','','',9654453569)
 
 
- SELECT * FROM BranchDetails,[PlanTransition],Insuranceplans,Customerdetails,Insurance_Scheme,Category
+
 
  
